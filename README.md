@@ -1,15 +1,59 @@
-Welcome to your new dbt project!
+# dbt_scooters
 
-### Using the starter project
+## Описание проекта
 
-Try running the following commands:
-- dbt run
-- dbt test
+`dbt_scooters` — dbt-проект для трансформации и моделирования данных сервиса самокатов.  
+Проект предназначен для построения аналитических моделей на базе подготовленных сырых данных
+(стейджинг → marts) и использования их в аналитике и BI.
 
+Проект использует:
+- **dbt** для трансформации данных
+- **uv** в качестве пакетного менеджера и менеджера виртуального окружения
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+---
+
+## Структура проекта (кратко)
+
+- `models/` — dbt-модели (staging, intermediate, marts)
+- `seeds/` — статические справочники (CSV)
+- `tests/` — кастомные тесты
+- `macros/` — макросы dbt
+- `dbt_project.yml` — конфигурация проекта
+
+---
+
+## Установка и запуск
+
+### Установка зависимостей
+
+```bash
+uv sync
+Активация окружения
+source .venv/bin/activate
+Основные команды dbt
+Проверка подключения
+dbt debug
+Запуск всех моделей
+dbt run
+Запуск тестов
+dbt test
+Запуск конкретной модели
+dbt run --select model_name
+Запуск модели и её зависимостей
+dbt run --select +model_name
+Просмотр документации
+dbt docs generate
+dbt docs serve
+Полезные команды для разработки
+Компиляция без выполнения
+dbt compile
+Проверка изменений (state-based)
+dbt run --select state:modified+
+Требования
+Python 3.10+
+dbt (устанавливается через uv)
+Доступ к целевому DWH (настраивается в profiles.yml)
+
+Примечание: если виртуальное окружение не активно, используйте `uv run dbt `.
+
+---
